@@ -94,7 +94,13 @@ def viewPayroll():
 @app.route("/AddPayroll", methods=['POST', 'GET'])
 def AddPayroll():
     if request.method == 'GET':
-        return render_template('AddPayroll.html')
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT emp_id FROM employee")
+        employee_ids = cursor.fetchall()
+        cursor.close()
+
+        # Pass employee ids to AddPayroll
+        return render_template('AddPayroll.html', employee_ids=employee_ids)
 
     if request.method == 'POST':
         emp_id = request.form['emp_id']
