@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Payroll</title>
+
+    <style>
+        h1 {
+             text-align: center;
+             font-size: 36px;
+         }
+         body {
+             margin: 0;
+             padding: 0;
+             font-family: sans-serif;
+             background-color: lightgray;
+             text-align: center;
+         }
+ 
+         form {
+             margin: 0 auto;
+             max-width: 500px;
+             padding: 20px;
+             background-color: white;
+             border-radius: 5px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+         }
+ 
+         label {
+             display: block;
+             margin-bottom: 10px;
+             text-align: center;
+             font-size: 20px;
+         }
+ 
+         button {
+             background-color: #4CAF50;
+             color: white;
+             padding: 10px 10px;
+             border: none;
+             border-radius: 5px;
+             font-size: 20px;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+         }
+ 
+         button:hover {
+             background-color: #3e8e41;
+         }
+ 
+         input{
+             height: 25px;
+             font-size: 20px;
+         }
+ 
+         select{
+             width: 100px;
+             font-size: 20px;
+         }
+ 
+         a {
+             display: block;
+             text-align: center;
+             font-size: 15px;
+             color: #888;
+             margin-top: 1rem;
+         }
+         
+         a:hover {
+             color: #555;
+         }
+ 
+     </style>
+</head>
+<body>
+
+    <h1>Edit Payroll Page</h1>
+
+    <form action="/editPayroll/{{ payroll[0] }}" autocomplete="on" method="POST">
+
+        <label for="payroll_id">Payroll id: </label>
+        <input type="text" id="payroll_id" name="payroll_id" value="{{ payroll_id[0] }}" disabled>
+
+        <br>
+        <br>
+
+        <label for="employee_name">Employee Name:</label>
+        <input type="text" id="employee_name" name="employee_name" value="{{ payroll_id[employee_name] }}" disabled>
+
+        <br>
+        <br>
+
+        <label for="hourly_rate">Hourly Rate:</label>
+        <input type="text" id="hourly_rate" name="hourly_rate" value="{{ payroll_id[hourly_rate] }}">
+        
+        <br>
+        <br>
+
+        <label for="working_hours">Working Hours:</label>
+        <input type="text" id="working_hours" name="working_hours" value="{{ payroll_id[working_hours] }}">
+        
+        <br>
+        <br>
+
+        <label for="bonus">Bonus:</label>
+        <input type="text" id="bonus" name="bonus"value="{{ payroll_id[bonus] }}">
+
+        <br>
+        <br>
+
+        <button type="submit" value="editpayroll">Update</button>
+        <a href="ViewPayroll.html">Back</a>
+    </form>
+
+</body>
+</html>
