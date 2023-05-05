@@ -91,38 +91,42 @@ def viewPayroll():
     return render_template('ViewPayroll.html', payroll = payroll)
 
 #Add payroll    
-@app.route("/AddPayroll", methods=['POST'])
+@app.route("/AddPayroll", methods=['POST', 'GET'])
 def AddPayroll():
-    emp_id = request.form['emp_id']
-    emp_hourly_rate = float(request.form['emp_hourly_rate'])
-    emp_hours_worked = float(request.form['emp_hours_worked'])
-    emp_bonus = float(request.form['emp.bonus'])
+    if request.method == 'GET':
+        return render_template('AddPayroll.html')
 
-    if float(emp_hourly_rate) < 0:
-        return "please enter valid hourly rate!"
-    
-    if float(emp_hours_worked) < 0:
-        return "please enter valid worked hours!"
-    
-    if (emp_bonus) < 0:
-        return "please enter at least 1 bonus amount"
+    if request.method == 'POST':
+        emp_id = request.form['emp_id']
+        emp_hourly_rate = float(request.form['emp_hourly_rate'])
+        emp_hours_worked = float(request.form['emp_hours_worked'])
+        emp_bonus = float(request.form['emp.bonus'])
 
-    pr_id = "PR" + str(emp_id)
+        if float(emp_hourly_rate) < 0:
+            return "please enter valid hourly rate!"
 
-    gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
-    tax = 0.15
-    gross_pay_tax = gross_pay * tax
-    net_pay = gross_pay - gross_pay_tax
+        if float(emp_hours_worked) < 0:
+            return "please enter valid worked hours!"
 
-    insert_sql = "INSERT INTO Payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    cursor = db_conn.cursor()
-    cursor.execute(insert_sql, (pr_id, emp_id, emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay))
-    db_conn.commit()
+        if (emp_bonus) < 0:
+            return "please enter at least 1 bonus amount"
 
-    cursor.close()
+        pr_id = "PR" + str(emp_id)
 
-    print("Add New Payroll Successfully...")
-    return redirect('/ViewPayroll')
+        gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
+        tax = 0.15
+        gross_pay_tax = gross_pay * tax
+        net_pay = gross_pay - gross_pay_tax
+
+        insert_sql = "INSERT INTO Payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        cursor = db_conn.cursor()
+        cursor.execute(insert_sql, (pr_id, emp_id, emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay))
+        db_conn.commit()
+
+        cursor.close()
+
+        print("Add New Payroll Successfully...")
+        return redirect('/ViewPayroll')
 
 #Edit Payroll
 @app.route("/EditPayroll/<string:pr_id>", methods=['POST'])
