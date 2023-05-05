@@ -43,6 +43,12 @@
 			background-color: #f5f5f5;
 		}
 		
+	    	td.button-cell {
+			display: flex;
+			justify-content: space-between;
+			border: none;
+		}	
+	    
 		button {
 			display: block;
 			margin: 0 auto;
@@ -101,9 +107,11 @@
 		<td>{{ pyrl[4] }}</td>
 		<td>{{ pyrl[5] }}</td>
 		<td>{{ pyrl[6] }}</td>
-		<td>
-			<a href="/EditPayroll/{{ pyrl[0] }}"><button>Edit</button></a>
-			<a href="/DeletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
+		<td class="button-cell">
+			<a href="/EditPayroll/{{ pyrl[0] }}"><button style="margin-right: 10px;">Edit</button></a>
+			<form action="" method="POST">
+				<a href="/DeletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
+			</form>
 		</td>
 	</tr>
 	{% endfor %}
