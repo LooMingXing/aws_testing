@@ -150,7 +150,6 @@ def AddPayroll():
 @app.route("/EditPayroll/<string:payroll_id>", methods=['POST', 'GET'])
 def EditPayroll(payroll_id):
     if request.method == 'GET':
-        if request.method == 'GET':
         cursor = db_conn.cursor()
         cursor.execute("SELECT * FROM Payroll WHERE payroll_id=%s", (payroll_id,))
         payroll = cursor.fetchone()
