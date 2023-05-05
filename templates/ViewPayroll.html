@@ -84,7 +84,6 @@
         <tr>
 			<th>Payroll ID</th>
             <th>Employee ID</th>
-            <th>Employee Name</th>
             <th>Hourly Rate</th>
             <th>Working Hour</th>
             <th>Bonus</th>
@@ -102,7 +101,6 @@
 				<td>{{ pyrl[4] }}</td>
 				<td>{{ pyrl[5] }}</td>
 				<td>{{ pyrl[6] }}</td>
-				<td>{{ pyrl[7] }}</td>
 				<td>
 					<a href="/editPayroll/{{ pyrl[0] }}"><button>Edit</button></a>
 					<a href="/deletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
