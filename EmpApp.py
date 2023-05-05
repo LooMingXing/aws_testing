@@ -147,7 +147,7 @@ def AddPayroll():
         return redirect('/ViewPayroll')
 
 #Edit Payroll
-@app.route("/EditPayroll/<string:pr_id>", methods=['POST', 'GET'])
+@app.route("/EditPayroll/<string:payroll_id>", methods=['POST', 'GET'])
 def EditPayroll(pr_id):
     if request.method == 'GET':
         return render_template('EditPayroll.html')
