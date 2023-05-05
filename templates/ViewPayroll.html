@@ -25,7 +25,7 @@
             border: 1px solid black;
 			border-collapse: collapse;
 			width: 100%;
-			max-width: 800px;
+			max-width: 925px;
 			margin-bottom: 1rem;
 			background-color: #f2f2f2;
             border-radius: 5px;
@@ -43,15 +43,11 @@
 			background-color: #f5f5f5;
 		}
 		
-	    	td.button-cell {
+		td.button-cell {
 			display: flex;
-			justify-content: space-between;
-			border: none;
-		}	
-	    
+		}
+
 		button {
-			display: block;
-			margin: 0 auto;
 			padding: 0.5rem 1rem;
 			background-color: #4CAF50;
 			color: white;
@@ -88,34 +84,32 @@
 
     <table>
         <tr>
-			<th>Payroll ID</th>
-            <th>Employee ID</th>
-            <th>Hourly Rate</th>
-            <th>Working Hour</th>
-            <th>Bonus</th>
-            <th>Gross Pay</th>
-            <th>Net Pay</th>
-			<th>Action</th>
+		<th>Payroll ID</th>
+		<th>Employee ID</th>
+		<th>Hourly Rate</th>
+		<th>Working Hour</th>
+		<th>Bonus</th>
+		<th>Gross Pay</th>
+		<th>Net Pay</th>
+		<th>Action</th>
         </tr>
 
-	{% for pyrl in payroll %}
-	<tr>
-		<td>{{ pyrl[0] }}</td>
-		<td>{{ pyrl[1] }}</td>
-		<td>{{ pyrl[2] }}</td>
-		<td>{{ pyrl[3] }}</td>
-		<td>{{ pyrl[4] }}</td>
-		<td>{{ pyrl[5] }}</td>
-		<td>{{ pyrl[6] }}</td>
-		<td class="button-cell">
-			<a href="/EditPayroll/{{ pyrl[0] }}"><button style="margin-right: 10px;">Edit</button></a>
-			<form action="" method="POST">
+		{% for pyrl in payroll %}
+		<tr>
+			<td>{{ pyrl[0] }}</td>
+			<td>{{ pyrl[1] }}</td>
+			<td>{{ pyrl[2] }}</td>
+			<td>{{ pyrl[3] }}</td>
+			<td>{{ pyrl[4] }}</td>
+			<td>{{ pyrl[5] }}</td>
+			<td>{{ pyrl[6] }}</td>
+			<td class="button-cell">
+				<a href="/EditPayroll/{{ pyrl[0] }}"><button style="margin-right: 10px;">Edit</button></a>
 				<a href="/DeletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
-			</form>
-		</td>
-	</tr>
-	{% endfor %}
-		
+			</td>
+		</tr>
+		{% endfor %}
+
     </table>
     
     </br>
