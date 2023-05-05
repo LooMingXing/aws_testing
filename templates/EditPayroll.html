@@ -81,28 +81,28 @@
 
     <h1>Edit Payroll Page</h1>
 
-    <form action="/EditPayroll/{{ pyrl[0] }}" autocomplete="on" method="POST">
+    <form action="/EditPayroll/{{ payroll[0] }}" autocomplete="on" method="POST">
 
         <label for="payroll_id">Payroll id: </label>
-        <input type="text" id="payroll_id" name="pr_id" value="{{ pyrl[0] }}" disabled>
+        <input type="text" id="payroll_id" name="pr_id" value="{{ payroll[0] }}" disabled>
 
         <br>
         <br>
 
         <label for="hourly_rate">Hourly Rate:</label>
-        <input type="text" id="hourly_rate" name="hourly_rate" value="{{ pyrl[2] }}">
+        <input type="text" id="hourly_rate" name="hourly_rate" value="{{ payroll[2] }}">
         
         <br>
         <br>
 
         <label for="working_hours">Working Hours:</label>
-        <input type="text" id="working_hours" name="working_hours" value="{{ pyrl[3] }}">
+        <input type="text" id="working_hours" name="working_hours" value="{{ payroll[3] }}">
         
         <br>
         <br>
 
         <label for="bonus">Bonus:</label>
-        <input type="text" id="bonus" name="bonus" value="{{ pyrl[4] }}">
+        <input type="text" id="bonus" name="bonus" value="{{ payroll[4] }}">
 
         <br>
         <br>
