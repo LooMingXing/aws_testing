@@ -98,14 +98,14 @@ def AddPayroll():
 
     if request.method == 'POST':
         emp_id = request.form['emp_id']
-        emp_hourly_rate = float(request.form['emp_hourly_rate'])
-        emp_hours_worked = float(request.form['emp_hours_worked'])
-        emp_bonus = float(request.form['emp.bonus'])
+        emp_hourly_rate = request.form['emp_hourly_rate']
+        emp_hours_worked = request.form['emp_hours_worked']
+        emp_bonus = request.form['emp.bonus']
 
-        if float(emp_hourly_rate) < 0:
+        if (emp_hourly_rate) < 0:
             return "please enter valid hourly rate!"
 
-        if float(emp_hours_worked) < 0:
+        if (emp_hours_worked) < 0:
             return "please enter valid worked hours!"
 
         if (emp_bonus) < 0:
@@ -129,35 +129,39 @@ def AddPayroll():
         return redirect('/ViewPayroll')
 
 #Edit Payroll
-@app.route("/EditPayroll/<string:pr_id>", methods=['POST'])
+@app.route("/EditPayroll/<string:pr_id>", methods=['POST', 'GET'])
 def EditPayroll(pr_id):
-    emp_hourly_rate = float(request.form['emp_hourly_rate'])
-    emp_hours_worked = float(request.form['emp_hours_worked'])
-    emp_bonus = float(request.form['emp.bonus'])
-  
-    if float(emp_hourly_rate) < 0:
-        return "please enter a valid hourly rate!"
-    
-    if float(emp_hours_worked) < 0:
-        return "please enter a valid worked hours!"
-    
-    if (emp_bonus) < 0:
-        return "please enter at least 1 bonus amount"
+    if request.method == 'GET':
+        return render_template('EditPayroll.html')
 
-    gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
-    tax = 0.15
-    gross_pay_tax = gross_pay * tax
-    net_pay = gross_pay - gross_pay_tax
+    if request.method == 'POST':
+        emp_hourly_rate = request.form['emp_hourly_rate']
+        emp_hours_worked = request.form['emp_hours_worked']
+        emp_bonus = request.form['emp.bonus']
 
-    update_sql = "UPDATE Payroll SET hourly_rate=%s, hours_worked=%s, bonus=%s, gross_pay=%s,net_pay=%s WHERE payroll_id=%s"
-    cursor = db_conn.cursor()
+        if (emp_hourly_rate) < 0:
+            return "please enter a valid hourly rate!"
 
-    cursor.execute(update_sql, (emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay, pr_id))
-    db_conn.commit()
-    cursor.close()
+        if (emp_hours_worked) < 0:
+            return "please enter a valid worked hours!"
 
-    print("Update Payroll Successfully...")
-    return redirect('/ViewPayroll')    
+        if (emp_bonus) < 0:
+            return "please enter at least 1 bonus amount"
+
+        gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
+        tax = 0.15
+        gross_pay_tax = gross_pay * tax
+        net_pay = gross_pay - gross_pay_tax
+
+        update_sql = "UPDATE Payroll SET hourly_rate=%s, hours_worked=%s, bonus=%s, gross_pay=%s,net_pay=%s WHERE payroll_id=%s"
+        cursor = db_conn.cursor()
+
+        cursor.execute(update_sql, (emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay, pr_id))
+        db_conn.commit()
+        cursor.close()
+
+        print("Update Payroll Successfully...")
+        return redirect('/ViewPayroll')    
 
 @app.route("/DeletePayroll/<string:pr_id>", methods=['POST'])
 def DeletePayroll(pr_id):
