@@ -150,7 +150,14 @@ def AddPayroll():
 @app.route("/EditPayroll/<string:payroll_id>", methods=['POST', 'GET'])
 def EditPayroll(payroll_id):
     if request.method == 'GET':
-        return render_template('EditPayroll.html')
+        if request.method == 'GET':
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT * FROM Payroll WHERE payroll_id=%s", (payroll_id,))
+        payroll = cursor.fetchone()
+        cursor.close()
+
+        # Pass payroll record to EditPayroll template
+        return render_template('EditPayroll.html', payroll=payroll)
 
     if request.method == 'POST':
         emp_hourly_rate = int(request.form['hourly_rate'])
