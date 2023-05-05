@@ -94,6 +94,14 @@ def viewPayroll():
     print(payroll)
     return render_template('ViewPayroll.html', payroll = payroll)
 
+#Generate Payroll ID
+def generate_pr_id():
+    cursor = db_conn.cursor() 
+    cursor.execute("SELECT COUNT(*) FROM Payroll")
+    count = cursor.fetchone()[0] + 1
+    pr_id = "PR{:03d}".format(count)
+    return pr_id
+
 #Add payroll    
 @app.route("/AddPayroll", methods=['POST', 'GET'])
 def AddPayroll():
@@ -121,7 +129,7 @@ def AddPayroll():
         if int(emp_bonus) < 0:
             return "please enter at least 1 bonus amount"
 
-        pr_id = "PR" + str(emp_id)
+        pr_id = generate_pr_id()
 
         gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
         tax = 0.15
