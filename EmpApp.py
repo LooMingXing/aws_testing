@@ -187,7 +187,7 @@ def EditPayroll(payroll_id):
         print("Update Payroll Successfully...")
         return redirect('/ViewPayroll')    
 
-@app.route("/DeletePayroll/<string:payroll_id>", methods=['POST'])
+@app.route("/DeletePayroll/<string:payroll_id>", methods=['POST', 'GET'])
 def DeletePayroll(payroll_id):
 
     delete_sql = "DELETE FROM Payroll WHERE payroll_id=%s"
