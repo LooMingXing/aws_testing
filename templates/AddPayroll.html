@@ -83,18 +83,13 @@
 
     <form action="" autocomplete="on" method="POST">
 
+        
         <label for="employee_id">Select an employee id: </label>
-        <select name="employee_id" id="employee_id">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+        <select name="emp_id" id="employee_id">
+            {% for emp_id in employee_ids %}
+            <option value="{{ emp_id[0] }}">{{ emp_id[0] }}</option>
+            {% endfor %}
         </select>
-
-        <br>
-        <br>
-
-        <label for="employee_name">Employee Name:</label>
-        <input type="text" id="employee_name" name="employee_name" disabled>
 
         <br>
         <br>
