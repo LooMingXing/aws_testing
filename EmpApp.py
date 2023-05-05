@@ -148,7 +148,7 @@ def AddPayroll():
 
 #Edit Payroll
 @app.route("/EditPayroll/<string:payroll_id>", methods=['POST', 'GET'])
-def EditPayroll(pr_id):
+def EditPayroll(payroll_id):
     if request.method == 'GET':
         return render_template('EditPayroll.html')
 
@@ -174,20 +174,20 @@ def EditPayroll(pr_id):
         update_sql = "UPDATE Payroll SET hourly_rate=%s, hours_worked=%s, bonus=%s, gross_pay=%s,net_pay=%s WHERE payroll_id=%s"
         cursor = db_conn.cursor()
 
-        cursor.execute(update_sql, (emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay, pr_id))
+        cursor.execute(update_sql, (emp_hourly_rate, emp_hours_worked, emp_bonus, gross_pay, net_pay, payroll_id))
         db_conn.commit()
         cursor.close()
 
         print("Update Payroll Successfully...")
         return redirect('/ViewPayroll')    
 
-@app.route("/DeletePayroll/<string:pr_id>", methods=['POST'])
-def DeletePayroll(pr_id):
+@app.route("/DeletePayroll/<string:payroll_id>", methods=['POST'])
+def DeletePayroll(payroll_id):
 
     delete_sql = "DELETE FROM Payroll WHERE payroll_id=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(delattr, (pr_id))
+    cursor.execute(delattr, (payroll_id))
     db_conn.commit()
     cursor.close()
 
