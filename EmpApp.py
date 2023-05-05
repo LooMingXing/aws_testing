@@ -104,9 +104,9 @@ def AddPayroll():
 
     if request.method == 'POST':
         emp_id = request.form['emp_id']
-        emp_hourly_rate = request.form['emp_hourly_rate']
-        emp_hours_worked = request.form['emp_hours_worked']
-        emp_bonus = request.form['emp.bonus']
+        emp_hourly_rate = request.form['hourly_rate']
+        emp_hours_worked = request.form['working_hours']
+        emp_bonus = request.form['bonus']
 
         if (emp_hourly_rate) < 0:
             return "please enter valid hourly rate!"
@@ -141,9 +141,9 @@ def EditPayroll(pr_id):
         return render_template('EditPayroll.html')
 
     if request.method == 'POST':
-        emp_hourly_rate = request.form['emp_hourly_rate']
-        emp_hours_worked = request.form['emp_hours_worked']
-        emp_bonus = request.form['emp.bonus']
+        emp_hourly_rate = request.form['hourly_rate']
+        emp_hours_worked = request.form['working_hours']
+        emp_bonus = request.form['bonus']
 
         if (emp_hourly_rate) < 0:
             return "please enter a valid hourly rate!"
