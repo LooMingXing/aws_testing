@@ -104,17 +104,17 @@ def AddPayroll():
 
     if request.method == 'POST':
         emp_id = request.form['emp_id']
-        emp_hourly_rate = request.form['hourly_rate']
-        emp_hours_worked = request.form['working_hours']
-        emp_bonus = request.form['bonus']
+        emp_hourly_rate = int(request.form['hourly_rate'])
+        emp_hours_worked = int(request.form['working_hours'])
+        emp_bonus = int(request.form['bonus'])
 
-        if (emp_hourly_rate) < 0:
+        if int(emp_hourly_rate) < 0:
             return "please enter valid hourly rate!"
-
-        if (emp_hours_worked) < 0:
+        
+        if int(emp_hours_worked) < 0:
             return "please enter valid worked hours!"
-
-        if (emp_bonus) < 0:
+        
+        if int(emp_bonus) < 0:
             return "please enter at least 1 bonus amount"
 
         pr_id = "PR" + str(emp_id)
@@ -141,17 +141,17 @@ def EditPayroll(pr_id):
         return render_template('EditPayroll.html')
 
     if request.method == 'POST':
-        emp_hourly_rate = request.form['hourly_rate']
-        emp_hours_worked = request.form['working_hours']
-        emp_bonus = request.form['bonus']
+        emp_hourly_rate = int(request.form['hourly_rate'])
+        emp_hours_worked = int(request.form['working_hours'])
+        emp_bonus = int(request.form['bonus'])
 
-        if (emp_hourly_rate) < 0:
-            return "please enter a valid hourly rate!"
-
-        if (emp_hours_worked) < 0:
-            return "please enter a valid worked hours!"
-
-        if (emp_bonus) < 0:
+        if int(emp_hourly_rate) < 0:
+            return "please enter valid hourly rate!"
+        
+        if int(emp_hours_worked) < 0:
+            return "please enter valid worked hours!"
+        
+        if int(emp_bonus) < 0:
             return "please enter at least 1 bonus amount"
 
         gross_pay = (emp_hourly_rate * emp_hours_worked) + emp_bonus
