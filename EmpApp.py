@@ -34,7 +34,7 @@ def about():
 @app.route("/AddEmp", methods=['POST', 'GET'])
 def AddEmp():
     if request.method == 'GET':
-        return render_template('AddPayroll.html')
+        return render_template('AddEmp.html')
     
     if request.method == 'POST':
         emp_id = request.form['emp_id']
