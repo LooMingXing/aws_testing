@@ -193,7 +193,7 @@ def DeletePayroll(payroll_id):
     delete_sql = "DELETE FROM Payroll WHERE payroll_id=%s"
     cursor = db_conn.cursor()
 
-    cursor.execute(delattr, (payroll_id))
+    cursor.execute(delete_sql, (payroll_id))
     db_conn.commit()
     cursor.close()
 
