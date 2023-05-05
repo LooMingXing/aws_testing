@@ -92,21 +92,21 @@
 			<th>Action</th>
         </tr>
 
-		<tr>
-			{% for pyrl in payroll %}
-				<td>{{ pyrl[0] }}</td>
-				<td>{{ pyrl[1] }}</td>
-				<td>{{ pyrl[2] }}</td>
-				<td>{{ pyrl[3] }}</td>
-				<td>{{ pyrl[4] }}</td>
-				<td>{{ pyrl[5] }}</td>
-				<td>{{ pyrl[6] }}</td>
-				<td>
-					<a href="/editPayroll/{{ pyrl[0] }}"><button>Edit</button></a>
-					<a href="/deletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
-				</td>
-			{% endfor %}
-		</tr>
+	{% for pyrl in payroll %}
+	<tr>
+		<td>{{ pyrl[0] }}</td>
+		<td>{{ pyrl[1] }}</td>
+		<td>{{ pyrl[2] }}</td>
+		<td>{{ pyrl[3] }}</td>
+		<td>{{ pyrl[4] }}</td>
+		<td>{{ pyrl[5] }}</td>
+		<td>{{ pyrl[6] }}</td>
+		<td>
+			<a href="/editPayroll/{{ pyrl[0] }}"><button>Edit</button></a>
+			<a href="/deletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
+		</td>
+	</tr>
+	{% endfor %}
 		
     </table>
     
