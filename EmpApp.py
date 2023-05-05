@@ -97,8 +97,12 @@ def viewPayroll():
 #Generate Payroll ID
 def generate_pr_id():
     cursor = db_conn.cursor() 
-    cursor.execute("SELECT COUNT(*) FROM Payroll")
-    count = cursor.fetchone()[0] + 1
+    cursor.execute("SELECT MAX(payroll_id) FROM Payroll")
+    max_id = cursor.fetchone()[0]
+    if max_id is not None:
+        count = int(max_id[2:]) + 1
+    else:
+        count = 1
     pr_id = "PR{:03d}".format(count)
     return pr_id
 
