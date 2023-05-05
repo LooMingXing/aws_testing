@@ -31,8 +31,12 @@ def about():
     return render_template('www.intellipaat.com')
 
 
-@app.route("/addemp", methods=['POST'])
+@app.route("/AddEmp", methods=['POST', 'GET'])
 def AddEmp():
+    if request.method == 'GET':
+        return render_template('AddPayroll.html')
+    
+    if request.method == 'POST':
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
