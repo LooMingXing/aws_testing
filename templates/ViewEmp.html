@@ -84,6 +84,7 @@
 
     <table>
         <tr>
+            <th>Image</th>
             <th>Employee ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -94,15 +95,14 @@
 
 		{% for employee in employee %}
 		<tr>
+            		<td><img src="https://group1-employee.s3.amazonaws.com/emp-id-{{ employee[0] }}_image_file" /></td>
 			<td>{{ employee[0] }}</td>
 			<td>{{ employee[1] }}</td>
 			<td>{{ employee[2] }}</td>
 			<td>{{ employee[3] }}</td>
 			<td>{{ employee[4] }}</td>
 			<td class="button-cell">
-                <a href="/ShowEmployee/{{ employee[0] }}"><button style="background-color: DodgerBlue; margin-right: 10px;">Show</button></a>
 				<a href="/EditEmployee/{{ employee[0] }}"><button style="margin-right: 10px;">Edit</button></a>
-				<a href="/DeleteEmployee/{{ employee[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
 			</td>
 		</tr>
 		{% endfor %}
