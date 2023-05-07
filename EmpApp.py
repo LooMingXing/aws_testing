@@ -70,8 +70,22 @@ def AddEmp():
             #   return "Employee with this ID already exists"
             
             if result:
-                error_message = "Employee with this ID already exists"
-                return render_template('AddEmp.html', error_message=error_message)
+                errors = ["Employee with this ID already exists"]
+
+            if not first_name:
+                errors.append("First name is required.")
+
+            if not last_name:
+                errors.append("Last name is required.")
+
+            if not pri_skill:
+                errors.append("Primary skill is required.")        
+
+            if emp_image_file.filename == "":
+                errors.append("Please select a file.")
+
+            if errors:
+                return render_template('AddEmp.html', errors=errors)
             
             cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
             db_conn.commit()
