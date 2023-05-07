@@ -54,6 +54,14 @@ def AddEmp():
         location = request.form['location']
         emp_image_file = request.files['emp_image_file']
 
+        # To check if emp_id already exists
+        check_sql = "SELECT * FROM employee WHERE emp_id = %s"
+        cursor.execute(check_sql, (emp_id,))
+        result = cursor.fetchone()
+
+        if result:
+            return "Employee with this ID already exists"
+
         insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
 
