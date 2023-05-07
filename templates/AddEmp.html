@@ -5,15 +5,15 @@
 </head>
 
 <center>
-	{% if errors %}
-		<div class="alert alert-danger" role="alert">
-			<ul>
-			{% for error in error_msg %}
-				<li>{{ error }}</li>
-			{% endfor %}
-			</ul>
-		</div>
-	{% endif %}	
+
+	<div class="alert alert-danger" role="alert">
+		<ul>
+		{% for error in error_msg %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+
 	<font color="black" size="4" style="font-family: avenir">
 
 		<h1 style="color: DodgerBlue">Employee Database</h1>
