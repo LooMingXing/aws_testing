@@ -3,16 +3,19 @@
 <head>
 	<title>Add Employee Information</title>
 </head>
+
+{% if errors %}
+	<div class="alert alert-danger" role="alert">
+		<ul>
+		{% for error in error_msg %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+
+
 <center>
-	{% if errors %}
-		<div class="alert alert-danger" role="alert">
-			<ul>
-			{% for error in errors %}
-				<li>{{ error }}</li>
-			{% endfor %}
-			</ul>
-		</div>
-	{% endif %}
 	
 	<font color="black" size="4" style="font-family: avenir">
 
@@ -24,15 +27,15 @@
 
 				<button type="submit" formaction="/GetEmp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET EMPLOYEE INFORMATION</button><br><br>
 
-		  		Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40"><br><br>
+		  		Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40" value="{{ emp_id }}"> <br><br>
 
-		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" ><br><br>
+		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" value="{{ first_name }}"><br><br>
 
-		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name"><br><br>
+		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name" value="{{ last_name }}"><br><br>
 
-		  		Primary Skills:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill"><br><br>
+		  		Primary Skills:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill" value="{{ pri_skill }}"><br><br>
 
-		  		Location:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="location"><br><br>
+		  		Location:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="location" value="{{ location }}"><br><br>
 
 		  		Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;"> <br><br>
 
