@@ -153,7 +153,7 @@ def EditEmp(emp_id):
 
 # Delete employee
 @app.route("/DeleteEmployee/<int:emp_id>", methods=['GET'])
-def DeletePayroll(emp_id):
+def DeleteEmployee(emp_id):
 
     delete_sql = "DELETE FROM employee WHERE emp_id=%s"
     cursor = db_conn.cursor()
