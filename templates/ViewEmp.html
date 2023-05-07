@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View All Payroll</title>
+    <title>View All Employee</title>
     <style>
         body {
 			display: flex;
@@ -79,33 +79,30 @@
     </style>
 </head>
 <body>
-    <h1>Payroll List</h1>
+    <h1>Employee List</h1>
 	<br>
 
     <table>
         <tr>
-			<th>Payroll ID</th>
             <th>Employee ID</th>
-            <th>Hourly Rate</th>
-            <th>Working Hour</th>
-            <th>Bonus</th>
-            <th>Gross Pay</th>
-            <th>Net Pay</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Primary Skill</th>
+            <th>Location</th>
 			<th>Action</th>
         </tr>
 
-		{% for pyrl in payroll %}
+		{% for employee in employee %}
 		<tr>
-			<td>{{ pyrl[0] }}</td>
-			<td>{{ pyrl[1] }}</td>
-			<td>{{ pyrl[2] }}</td>
-			<td>{{ pyrl[3] }}</td>
-			<td>{{ pyrl[4] }}</td>
-			<td>{{ pyrl[5] }}</td>
-			<td>{{ pyrl[6] }}</td>
+			<td>{{ employee[0] }}</td>
+			<td>{{ employee[1] }}</td>
+			<td>{{ employee[2] }}</td>
+			<td>{{ employee[3] }}</td>
+			<td>{{ employee[4] }}</td>
 			<td class="button-cell">
-				<a href="/EditPayroll/{{ pyrl[0] }}"><button style="margin-right: 10px;">Edit</button></a>
-				<a href="/DeletePayroll/{{ pyrl[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
+                <a href="/ShowEmployee/{{ employee[0] }}"><button style="background-color: DodgerBlue; margin-right: 10px;">Show</button></a>
+				<a href="/EditEmployee/{{ employee[0] }}"><button style="margin-right: 10px;">Edit</button></a>
+				<a href="/DeleteEmployee/{{ employee[0] }}"><button style="background-color: red; text-decoration: none;" onclick="return confirm('Are you sure?')">Delete</button></a>
 			</td>
 		</tr>
 		{% endfor %}
@@ -113,7 +110,7 @@
     </table>
     
     </br>
-    <a href="AddPayroll"><button>Add Payroll</button></a> <br>
+    <a href="AddEmp"><button>Add New Employee</button></a> <br>
     <a href="/">Back to Index</a>
 </body>
 </html>

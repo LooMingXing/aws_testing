@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from Flask import Flask, render_template, request, redirect, flash
 from pymysql import connections
 import os
 import boto3
@@ -20,17 +20,27 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
-
+# Index
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
 
-
+# About Us
 @app.route("/about", methods=['POST'])
 def about():
     return render_template('www.intellipaat.com')
 
+# View all employee
+@app.route("/ViewEmp", methods=['GET'])
+def viewPayroll():
+    cursor = db_conn.cursor() 
+    cursor.execute("SELECT * FROM employee")
+    employee = cursor.fetchall()
+    cursor.close()
+    print(employee)
+    return render_template('ViewEmp.html', employee = employee)
 
+# Add Employee
 @app.route("/AddEmp", methods=['POST', 'GET'])
 def AddEmp():
     if request.method == 'GET':
@@ -84,6 +94,79 @@ def AddEmp():
         print("all modification done...")
         return render_template('AddEmpOutput.html', name=emp_name)
 
+# Show Employee
+
+
+# Edit Employee
+@app.route("/EditEmp/<int:emp_id>", methods=['POST', 'GET'])
+def EditEmp(emp_id):
+    if request.method == 'GET':
+        return render_template('EditEmp.html')
+    
+    if request.method == 'POST':
+        emp_id = request.form['emp_id']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        pri_skill = request.form['pri_skill']
+        location = request.form['location']
+        emp_image_file = request.files['emp_image_file']
+
+        update_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s WHERE emp_id=%s"
+        cursor = db_conn.cursor()
+
+        if emp_image_file.filename == "":
+            return "Please select a file"
+
+        try:
+
+            cursor.execute(update_sql, (first_name, last_name, pri_skill, location, emp_id))
+            db_conn.commit()
+            emp_name = "" + first_name + " " + last_name
+            # Upload image file in S3 #
+            emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+            s3 = boto3.resource('s3')
+
+            try:
+                print("Data updated in MySQL RDS... uploading image to S3...")
+                s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
+                bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+                s3_location = (bucket_location['LocationConstraint'])
+
+                if s3_location is None:
+                    s3_location = ''
+                else:
+                    s3_location = '-' + s3_location
+
+                object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                    s3_location,
+                    custombucket,
+                    emp_image_file_name_in_s3)
+
+            except Exception as e:
+                return str(e)
+
+        finally:
+            cursor.close()
+
+        print("all modification done...")
+        return render_template('EditEmpOutput.html', name=emp_name)
+
+# Delete employee
+@app.route("/DeleteEmployee/<int:emp_id>", methods=['GET'])
+def DeletePayroll(emp_id):
+
+    delete_sql = "DELETE FROM employee WHERE emp_id=%s"
+    cursor = db_conn.cursor()
+
+    cursor.execute(delete_sql, (emp_id))
+    db_conn.commit()
+    cursor.close()
+
+    print("Delete Employee Successfully...")
+    return redirect('/ViewEmp')    
+
+
+
 #View all payroll
 @app.route("/ViewPayroll", methods=['GET'])
 def viewPayroll():
@@ -109,6 +192,7 @@ def generate_pr_id():
 #Add payroll    
 @app.route("/AddPayroll", methods=['POST', 'GET'])
 def AddPayroll():
+
     if request.method == 'GET':
         cursor = db_conn.cursor()
         cursor.execute("SELECT emp_id FROM employee")
