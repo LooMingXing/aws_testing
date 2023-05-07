@@ -103,7 +103,13 @@ def AddEmp():
 @app.route("/EditEmployee/<int:emp_id>", methods=['POST', 'GET'])
 def EditEmp(emp_id):
     if request.method == 'GET':
-        return render_template('EditEmployee.html')
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT * FROM employee WHERE emp_id=%s", (emp_id))
+        employee = cursor.fetchone()
+        cursor.close()
+
+        # Pass employee record to EditEmployee template
+        return render_template('EditEmployee.html', employee=employee)
     
     if request.method == 'POST':
         emp_id = request.form['emp_id']
