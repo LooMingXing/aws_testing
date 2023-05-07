@@ -99,11 +99,8 @@ def AddEmp():
         print("all modification done...")
         return render_template('AddEmpOutput.html', name=emp_name)
 
-# Show Employee
-
-
 # Edit Employee
-@app.route("/EditEmp/<int:emp_id>", methods=['POST', 'GET'])
+@app.route("/EditEmployee/<int:emp_id>", methods=['POST', 'GET'])
 def EditEmp(emp_id):
     if request.method == 'GET':
         return render_template('EditEmp.html')
@@ -119,57 +116,12 @@ def EditEmp(emp_id):
         update_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s WHERE emp_id=%s"
         cursor = db_conn.cursor()
 
-        if emp_image_file.filename == "":
-            return "Please select a file"
+        cursor.execute(update_sql, (first_name, last_name, pri_skill, location, emp_id))
+        db_conn.commit()
+        cursor.close()
 
-        try:
-
-            cursor.execute(update_sql, (first_name, last_name, pri_skill, location, emp_id))
-            db_conn.commit()
-            emp_name = "" + first_name + " " + last_name
-            # Upload image file in S3 #
-            emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
-            s3 = boto3.resource('s3')
-
-            try:
-                print("Data updated in MySQL RDS... uploading image to S3...")
-                s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
-                bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
-                s3_location = (bucket_location['LocationConstraint'])
-
-                if s3_location is None:
-                    s3_location = ''
-                else:
-                    s3_location = '-' + s3_location
-
-                object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                    s3_location,
-                    custombucket,
-                    emp_image_file_name_in_s3)
-
-            except Exception as e:
-                return str(e)
-
-        finally:
-            cursor.close()
-
-        print("all modification done...")
-        return render_template('EditEmpOutput.html', name=emp_name)
-
-# Delete employee
-@app.route("/DeleteEmployee/<int:emp_id>", methods=['GET'])
-def DeleteEmployee(emp_id):
-
-    delete_sql = "DELETE FROM employee WHERE emp_id=%s"
-    cursor = db_conn.cursor()
-
-    cursor.execute(delete_sql, (emp_id))
-    db_conn.commit()
-    cursor.close()
-
-    print("Delete Employee Successfully...")
-    return redirect('/ViewEmp')    
-
+        print("Update Employee done...")
+        return redirect('/ViewEmp')
 
 
 #View all payroll
