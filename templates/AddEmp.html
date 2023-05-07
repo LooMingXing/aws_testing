@@ -7,9 +7,11 @@
 <center>
 
 	<div class="alert alert-danger" role="alert">
-		{% for error in error_msg %}
-			<span>{{ error }}</span>
-		{% endfor %}
+	  <pre>
+	    {% for error in error_msg %}
+	      {{ error }}
+	    {% endfor %}
+	  </pre>
 	</div>
 
 	<font color="black" size="4" style="font-family: avenir">
