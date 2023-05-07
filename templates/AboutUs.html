@@ -2,84 +2,170 @@
 <html>
 
 <head>
-	<title>About us Page</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="aboutUs.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-      a {
-        display: block;
-        text-align: center;
-        font-size: 15px;
-        color: #888;
-        margin-top: 1rem;
-      }
-      
-      a:hover {
-        color: #555;
-      }
-    </style>
- </head>
-<body>
-  
-	<div class="about-section">
-        <h1>About Us</h1>
-        <p>We are a team of software developers with professional skills in the field of cloud services, configurations and computing.</p>
-      </div>
-      
-      <h2 style="text-align:center">Our Team</h2>
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <img src="mingxing.jpeg" alt="loomingxing" style="width:100%">
-            <div class="container">
-              <h2>Loo Ming Xing</h2>
-              <p class="title">Cloud Computing Engineer</p>
-              <p>Hi, everyone! I worked as a cloud computing engineer for more than 5 years. I'm willing to take on any challenges 
-                given by my client and I'll try my best to provide the best services to my beloved customers.
-              </p>
-              <p>loomingxing@gmail.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="column">
-          <div class="card">
-            <img style="height: 450px;" src="limin.jpeg" alt="choolimin" style="width:100%">
-            <div class="container">
-              <h2>Choo Li Min</h2>
-              <p class="title">Software Engineer</p>
-              <p>Hello guys! I worked as a software engineer for almost 3 years and I'm quite an expert in cloud computing too. 
-                Feel free to contact me for any inquiry related to IT and follow me on instagram for latest information. 
-              </p>
-              <p>choolimin@gmail.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="column">
-          <div class="card">
-            <img style="height: 450px;" src="weien.png" alt="Nicholas" style="width:100%">
-            <div class="container">
-              <h2>Nicholas Lim Wei En</h2>
-              <p class="title">Cloud Computing Consultant</p>
-              <p>Hi guys! I worked as a cloud computing consultant for more than 4 years and I'm providing professional consultation
-                regarding cloud services and web services. Feel free to contact me to book consulation hours.
-              </p>
-              <p>limweien@gmail.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <title>About us Page</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="aboutUs.css" />
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
 
-      <a href="/">Back to Index</a>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    img {
+      padding: 30px;
+    }
+
+    .row {
+      width: 80%;
+      margin-left: 150px;
+    }
+
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+
+    .about-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .title {
+      color: grey;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      font-size: 15px;
+      color: #888;
+      margin-top: 1rem;
+    }
+
+    a:hover {
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="about-section">
+    <h1>About Us</h1>
+    <p>We are a team of software developers with professional skills in the field of cloud services, configurations and
+      computing.</p>
+  </div>
+
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src="mingxing.jpeg" alt="loomingxing" style="width:100%">
+        <div class="container">
+          <h2>Loo Ming Xing</h2>
+          <p class="title">Cloud Computing Engineer</p>
+          <p>Hi, everyone! I worked as a cloud computing engineer for more than 5 years. I'm willing to take on any
+            challenges
+            given by my client and I'll try my best to provide the best services to my beloved customers.
+          </p>
+          <p>loomingxing@gmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img style="height: 450px;" src="limin.jpeg" alt="choolimin" style="width:100%">
+        <div class="container">
+          <h2>Choo Li Min</h2>
+          <p class="title">Software Engineer</p>
+          <p>Hello guys! I worked as a software engineer for almost 3 years and I'm quite an expert in cloud computing
+            too.
+            Feel free to contact me for any inquiry related to IT and follow me on instagram for latest information.
+          </p>
+          <p>choolimin@gmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img style="height: 450px;" src="weien.png" alt="Nicholas" style="width:100%">
+        <div class="container">
+          <h2>Nicholas Lim Wei En</h2>
+          <p class="title">Cloud Computing Consultant</p>
+          <p>Hi guys! I worked as a cloud computing consultant for more than 4 years and I'm providing professional
+            consultation
+            regarding cloud services and web services. Feel free to contact me to book consulation hours.
+          </p>
+          <p>limweien@gmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="/">Back to Index</a>
 </body>
 
 </html>
