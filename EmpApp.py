@@ -103,7 +103,7 @@ def AddEmp():
 @app.route("/EditEmployee/<int:emp_id>", methods=['POST', 'GET'])
 def EditEmp(emp_id):
     if request.method == 'GET':
-        return render_template('EditEmp.html')
+        return render_template('EditEmployee.html')
     
     if request.method == 'POST':
         emp_id = request.form['emp_id']
