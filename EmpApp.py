@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from pymysql import connections
 import os
 import boto3
@@ -124,14 +124,26 @@ def AddPayroll():
         emp_hours_worked = int(request.form['working_hours'])
         emp_bonus = int(request.form['bonus'])
 
+        # if int(emp_hourly_rate) < 0:
+        #     return "please enter valid hourly rate!"
+        
+        # if int(emp_hours_worked) < 0:
+        #     return "please enter valid worked hours!"
+        
+        # if int(emp_bonus) < 0:
+        #     return "please enter at least 1 bonus amount"
+
         if int(emp_hourly_rate) < 0:
-            return "please enter valid hourly rate!"
+            flash("Please enter a valid hourly rate!", "error")
+            return redirect(request.url)
         
         if int(emp_hours_worked) < 0:
-            return "please enter valid worked hours!"
+            flash("Please enter a valid number of worked hours!", "error")
+            return redirect(request.url)
         
         if int(emp_bonus) < 0:
-            return "please enter at least 1 bonus amount"
+            flash("Please enter a bonus amount of at least 1!", "error")
+            return redirect(request.url)
 
         pr_id = generate_pr_id()
 
