@@ -66,8 +66,12 @@ def AddEmp():
             cursor.execute(check_sql, (emp_id,))
             result = cursor.fetchone()
 
+            #if result:
+            #   return "Employee with this ID already exists"
+            
             if result:
-                return "Employee with this ID already exists"
+                error_message = "Employee with this ID already exists"
+                return render_template('AddEmp.html', error_message=error_message)
             
             cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
             db_conn.commit()
