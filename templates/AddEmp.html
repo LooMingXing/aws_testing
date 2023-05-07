@@ -16,12 +16,13 @@
 	
 				<form action="/AddEmp" autocomplete="on" method = "POST" enctype="multipart/form-data">
 	
-					Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40" value="{{ emp_id }}" required> <br><br>
+					Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40" value="{{ emp_id }}" required>
 					{% if error_msg %}
 						<div class="alert alert-danger" role="alert" style="color: red;">
 							{{ error_msg }}
 						</div>
 					{% endif %}	
+					<br><br>
 					
 					First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" value="{{ first_name }}" required><br><br>
 	
