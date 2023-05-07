@@ -32,7 +32,7 @@ def about():
 
 # View all employee
 @app.route("/ViewEmp", methods=['GET'])
-def viewPayroll():
+def viewEmployee():
     cursor = db_conn.cursor() 
     cursor.execute("SELECT * FROM employee")
     employee = cursor.fetchall()
