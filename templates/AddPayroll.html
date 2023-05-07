@@ -80,22 +80,12 @@
 
 <body>
     <h1>Add Payroll Page</h1>
-
-	{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		    {% for message in messages %}
-			<div>
-			    {{ message }}
-			</div>
-		    {% endfor %}
-		{% endif %}
-    	{% endwith %}
 	
     <form action="" autocomplete="on" method="POST">
 
         
         <label for="employee_id">Select an employee id: </label>
-        <select name="emp_id" id="employee_id">
+        <select name="emp_id" id="employee_id" required>
             {% for emp_id in employee_ids %}
             <option value="{{ emp_id[0] }}">{{ emp_id[0] }}</option>
             {% endfor %}
@@ -105,19 +95,19 @@
         <br>
 
         <label for="hourly_rate">Hourly Rate:</label>
-        <input type="text" id="hourly_rate" name="hourly_rate">
+        <input type="text" id="hourly_rate" name="hourly_rate" min="1" required>
         
         <br>
         <br>
 
         <label for="working_hours">Working Hours:</label>
-        <input type="text" id="working_hours" name="working_hours">
+        <input type="text" id="working_hours" name="working_hours" min="1" required>
         
         <br>
         <br>
 
         <label for="bonus">Bonus:</label>
-        <input type="text" id="bonus" name="bonus">
+        <input type="text" id="bonus" name="bonus" min="1" required>
 
         <br>
         <br>
