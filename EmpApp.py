@@ -60,32 +60,39 @@ def AddEmp():
         if emp_image_file.filename == "":
             return "Please select a file"
 
-        try:
+        try:            
+            if emp_id == "":
+                error_msg = "Employee ID cannot be empty"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
+
             # To check if emp_id already exists
             check_sql = "SELECT * FROM employee WHERE emp_id = %s"
             cursor.execute(check_sql, (emp_id,))
             result = cursor.fetchone()
 
-            #if result:
-            #   return "Employee with this ID already exists"
-            
             if result:
-                errors = ["Employee with this ID already exists"]
+                error_msg = "Employee with this ID already exists"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
-            if not first_name:
-                errors.append("First name is required.")
+            if first_name == "":
+                error_msg = "First name cannot be empty"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
-            if not last_name:
-                errors.append("Last name is required.")
+            if last_name == "":
+                error_msg = "Last name cannot be empty"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
-            if not pri_skill:
-                errors.append("Primary skill is required.")        
+            if pri_skill == "":
+                error_msg = "Primary skill cannot be empty"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
+
+            if location == "":
+                error_msg = "The location cannot be empty"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
             if emp_image_file.filename == "":
-                errors.append("Please select a file.")
-
-            if errors:
-                return render_template('AddEmp.html', errors=errors)
+                error_msg = "Please select a file"
+                return render_template('AddEmp.html', error_msg=error_msg, emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
             
             cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
             db_conn.commit()
