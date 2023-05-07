@@ -170,13 +170,16 @@ def AddPayroll():
         emp_bonus = int(request.form['bonus'])
 
         if int(emp_hourly_rate) < 0:
-            return "please enter valid hourly rate!"
+            error_message1 ="Please enter valid hourly rate!"
+            return render_template('AddPayroll', error_message1=error_message1, emp_hourly_rate=emp_hourly_rate, emp_hours_worked=emp_hours_worked, emp_bonus=emp_bonus)
         
         if int(emp_hours_worked) < 0:
-            return "please enter valid worked hours!"
-        
+            error_message2 ="please enter valid worked hours!"
+            return render_template('AddPayroll', error_message2=error_message2, emp_hourly_rate=emp_hourly_rate, emp_hours_worked=emp_hours_worked, emp_bonus=emp_bonus)
+                
         if int(emp_bonus) < 0:
-            return "please enter at least 1 bonus amount"
+            error_message3 ="please enter at least 1 bonus amount"
+            return render_template('AddPayroll', error_messag3e=error_message3, emp_hourly_rate=emp_hourly_rate, emp_hours_worked=emp_hours_worked, emp_bonus=emp_bonus)
 
         pr_id = generate_pr_id()
 
