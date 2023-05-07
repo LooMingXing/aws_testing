@@ -26,9 +26,9 @@ def home():
     return render_template('index.html')
 
 # About Us
-@app.route("/about", methods=['POST'])
+@app.route("/AboutUs", methods=['GET'])
 def about():
-    return render_template('www.intellipaat.com')
+    return render_template('AboutUs.html')
 
 # View all employee
 @app.route("/ViewEmp", methods=['GET'])
