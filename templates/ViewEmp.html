@@ -81,18 +81,18 @@
 
     <table>
         <tr>
-            <th>Image</th>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Primary Skill</th>
-            <th>Location</th>
-			<th>Action</th>
+		<th>Image</th>
+		<th>Employee ID</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Primary Skill</th>
+		<th>Location</th>
+		<th>Action</th>
         </tr>
 
 		{% for employee in employee %}
 		<tr>
-            		<td><img src="https://group1-employee.s3.amazonaws.com/emp-id-{{ employee[0] }}_image_file" style="width: 100px; height: 100px;"/></td>
+            		<td><img src="https://group1-employee.s3.amazonaws.com/emp-id-{{ employee[0] }}_image_file" style="width: 800px; height: 80px;"/></td>
 			<td>{{ employee[0] }}</td>
 			<td>{{ employee[1] }}</td>
 			<td>{{ employee[2] }}</td>
