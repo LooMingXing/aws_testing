@@ -42,10 +42,7 @@
 		tr:hover {
 			background-color: #f5f5f5;
 		}
-		
-		td.button-cell {
-			display: flex;
-		}
+
 
 		button {
 			padding: 0.5rem 1rem;
@@ -95,14 +92,14 @@
 
 		{% for employee in employee %}
 		<tr>
-            		<td><img src="https://group1-employee.s3.amazonaws.com/emp-id-{{ employee[0] }}_image_file" style="width: 50px; height: 50px;"/></td>
+            		<td><img src="https://group1-employee.s3.amazonaws.com/emp-id-{{ employee[0] }}_image_file" style="width: 100px; height: 100px;"/></td>
 			<td>{{ employee[0] }}</td>
 			<td>{{ employee[1] }}</td>
 			<td>{{ employee[2] }}</td>
 			<td>{{ employee[3] }}</td>
 			<td>{{ employee[4] }}</td>
 			<td class="button-cell">
-				<a href="/EditEmployee/{{ employee[0] }}"><button style="margin-right: 10px;">Edit</button></a>
+				<a href="/EditEmployee/{{ employee[0] }}"><button">Edit</button></a>
 			</td>
 		</tr>
 		{% endfor %}
