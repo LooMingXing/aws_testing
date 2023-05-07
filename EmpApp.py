@@ -135,15 +135,15 @@ def AddPayroll():
 
         if int(emp_hourly_rate) < 0:
             flash("Please enter a valid hourly rate!", "error")
-            return redirect('AddPayroll')
+            return render_template('AddPayroll')
         
         if int(emp_hours_worked) < 0:
             flash("Please enter a valid number of worked hours!", "error")
-            return redirect('AddPayroll')
+            return render_template('AddPayroll')
         
         if int(emp_bonus) < 0:
             flash("Please enter a bonus amount of at least 1!", "error")
-            return redirect('AddPayroll')
+            return render_template('AddPayroll')
 
         pr_id = generate_pr_id()
 
