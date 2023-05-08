@@ -4,8 +4,7 @@
 	<title>Add Employee Information</title>
 </head>
 
-<body>
-	
+<body>	
 	<center>
 		
 		<font color="black" size="4" style="font-family: avenir">
@@ -22,21 +21,20 @@
 							{{ error_msg }}
 						</div>
 					{% endif %}	
+
 					<br><br>
-					
 					First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" value="{{ first_name }}" required><br><br>
-	
+
 					Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name" value="{{ last_name }}" required><br><br>
-	
+
 					Primary Skills:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill" value="{{ pri_skill }}" required><br><br>
-	
+
 					Location:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="location" value="{{ location }}" required><br><br>
-	
-					Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;" required> <br><br>
-	
+
+					Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+
 					<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">UPDATE DATABASE</button>
-					<br><br>
-					<a href="/ViewEmp">Back</a>
+	
 				</form>
 	
 			</body>
@@ -44,5 +42,6 @@
 		</font>
 	</center>
 </body>
+
 </html>
 
