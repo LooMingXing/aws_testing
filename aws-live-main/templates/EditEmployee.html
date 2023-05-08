@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+
+    <style>
+        h1 {
+             text-align: center;
+             font-size: 36px;
+         }
+         body {
+             margin: 0;
+             padding: 0;
+             font-family: sans-serif;
+             background-color: lightgray;
+             text-align: center;
+         }
+ 
+         form {
+             margin: 0 auto;
+             max-width: 500px;
+             padding: 20px;
+             background-color: white;
+             border-radius: 5px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+         }
+ 
+         label {
+             display: block;
+             margin-bottom: 10px;
+             text-align: center;
+             font-size: 20px;
+         }
+ 
+         button {
+             background-color: #4CAF50;
+             color: white;
+             padding: 10px 10px;
+             border: none;
+             border-radius: 5px;
+             font-size: 20px;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+         }
+ 
+         button:hover {
+             background-color: #3e8e41;
+         }
+ 
+         input{
+             height: 25px;
+             font-size: 20px;
+         }
+ 
+         select{
+             width: 100px;
+             font-size: 20px;
+         }
+ 
+         a {
+             display: block;
+             text-align: center;
+             font-size: 15px;
+             color: #888;
+             margin-top: 1rem;
+         }
+         
+         a:hover {
+             color: #555;
+         }
+ 
+     </style>
+</head>
+<body>
+
+    <h1>Edit Employee</h1>
+
+    <form action="/EditEmployee/{{ employee[0] }}" autocomplete="on" method="POST">
+
+        <label for="emp_id">Employee id: </label>
+        <input type="text" id="emp_id" name="emp_id" value="{{ employee[0] }}" disabled>
+
+        <br>
+        <br>
+
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ employee[1] }}" required>
+        
+        <br>
+        <br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ employee[2] }}" required>
+        
+        <br>
+        <br>
+
+        <label for="pri_skill">Primary Skill:</label>
+        <input type="text" id="pri_skill" name="pri_skill" value="{{ employee[3] }}" required>
+
+        <br>
+        <br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="{{ employee[4] }}" required>
+
+        <br>
+        <br>
+
+        <button type="submit">Update</button>
+        <a href="/ViewEmp">Back</a>
+    </form>
+
+</body>
+</html>
