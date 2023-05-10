@@ -329,7 +329,7 @@ def AddAttendance():
         cursor.close()
 
         print("Add New Attendnace Successfully...")
-        return redirect('/ViewAttendnace')
+        return redirect('/ViewAttendance')
 
 # Edit Attendance 
 @app.route("/EditEmpAtt/<string:attendance_id>", methods=['POST', 'GET'])
