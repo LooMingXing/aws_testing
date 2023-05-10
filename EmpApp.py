@@ -279,6 +279,96 @@ def DeletePayroll(payroll_id):
     print("Delete Payroll Successfully...")
     return redirect('/ViewPayroll')    
 
+# Generate Attendance ID 
+def generate_att_id():
+    cursor = db_conn.cursor() 
+    cursor.execute("SELECT MAX(attendance_id) FROM Attendance")
+    max_id = cursor.fetchone()[0]
+    if max_id is not None:
+        count = int(max_id[2:]) + 1
+    else:
+        count = 1
+    att_id = "ATT{:03d}".format(count)
+    return att_id
+
+# View All Attendance
+@app.route("/ViewAttendance", methods=['GET'])
+def viewAttendance():
+    cursor = db_conn.cursor() 
+    cursor.execute("SELECT * FROM Attendance")
+    attendances = cursor.fetchall()
+    cursor.close()
+    print(attendances)
+    return render_template('ViewAttendance.html', attendances=attendances)
+
+
+# Add Attendance 
+@app.route("/AddEmpAtt", methods=['POST', 'GET'])
+def AddAttendance():
+    if request.method == 'GET':
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT emp_id, CONCAT(first_name, ' ', last_name) as full_name FROM employee")
+        employees = cursor.fetchall()
+        cursor.close()
+
+        # Pass employees to AddPayroll
+        return render_template('AddEmpAtt.html', employees=employees)
+
+    if request.method == 'POST':
+        emp_id = request.form['emp_id']
+        date = request.form['date']
+        status = request.form['status']
+
+        att_id = generate_att_id()
+
+        insert_sql = "INSERT INTO Attendance VALUES (%s, %s, %s, %s)"
+        cursor = db_conn.cursor()
+        cursor.execute(insert_sql, (att_id, emp_id, date, status))
+        db_conn.commit()
+
+        cursor.close()
+
+        print("Add New Attendnace Successfully...")
+        return redirect('/ViewAttendnace')
+
+# Edit Attendance 
+@app.route("/EditEmpAtt/<string:attendance_id>", methods=['POST', 'GET'])
+def EditPayroll(attendance_id):
+    if request.method == 'GET':
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT * FROM Attendance WHERE attendance_id=%s", (attendance_id,))
+        attendance = cursor.fetchone()
+        cursor.close()
+        return render_template('EditEmpAtt.html', attendance=attendance)
+
+    if request.method == 'POST':
+        date = request.form['date']
+        status = request.form['status']
+
+        update_sql = "UPDATE Attendance SET date=%s, status=%s WHERE attendance_id=%s"
+        cursor = db_conn.cursor()
+
+        cursor.execute(update_sql, (date, status, attendance_id))
+        db_conn.commit()
+        cursor.close()
+
+        print("Update Attendance Successfully...")
+        return redirect('/ViewAttendance')   
+
+# Delete Attendance
+@app.route("/DeleteAttendance/<string:attendance_id>", methods=['GET'])
+def DeleteAttendance(attendance_id):
+
+    delete_sql = "DELETE FROM Attendance WHERE attendance_id=%s"
+    cursor = db_conn.cursor()
+
+    cursor.execute(delete_sql, (attendance_id))
+    db_conn.commit()
+    cursor.close()
+
+    print("Delete Attendance Successfully...")
+    return redirect('/ViewAttendance')    
+
 
 # View Leave List
 @app.route("/ViewLeave", methods=['GET'])
