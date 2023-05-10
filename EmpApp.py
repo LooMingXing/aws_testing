@@ -285,7 +285,7 @@ def generate_att_id():
     cursor.execute("SELECT MAX(attendance_id) FROM Attendance")
     max_id = cursor.fetchone()[0]
     if max_id is not None:
-        count = int(max_id[2:]) + 1
+        count = int(max_id[3:]) + 1
     else:
         count = 1
     att_id = "ATT{:03d}".format(count)
