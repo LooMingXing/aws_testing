@@ -333,7 +333,7 @@ def AddAttendance():
 
 # Edit Attendance 
 @app.route("/EditEmpAtt/<string:attendance_id>", methods=['POST', 'GET'])
-def EditPayroll(attendance_id):
+def EditAttendance(attendance_id):
     if request.method == 'GET':
         cursor = db_conn.cursor()
         cursor.execute("SELECT * FROM Attendance WHERE attendance_id=%s", (attendance_id,))
