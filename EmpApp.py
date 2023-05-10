@@ -356,7 +356,7 @@ def EditAttendance(attendance_id):
         return redirect('/ViewAttendance')   
 
 # Delete Attendance
-@app.route("/DeleteAttendance/<string:attendance_id>", methods=['GET'])
+@app.route("/DeleteEmpAtt/<string:attendance_id>", methods=['GET'])
 def DeleteAttendance(attendance_id):
 
     delete_sql = "DELETE FROM Attendance WHERE attendance_id=%s"
