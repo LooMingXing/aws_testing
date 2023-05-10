@@ -82,7 +82,7 @@
                 <td>{{ attendance[3] }}</td>
                 <td>
                     <a href="/EditEmpAtt/{{ attendance[0] }}"><button>Edit</button></a>
-                    <a href="/DeleteEmpAtt/{{ attendance[0] }}"><button style="background-color: red;">Delete</button></a>
+                    <a href="/DeleteEmpAtt/{{ attendance[0] }}"><button style="background-color: red;" onclick="return confirm('Are you sure want to delete this record?')">Delete</button></a>
                 </td>
             </tr>
             {% endfor %}
