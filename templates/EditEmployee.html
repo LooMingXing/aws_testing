@@ -81,7 +81,7 @@
 
     <h1>Edit Employee</h1>
 
-    <form action="/EditEmployee/{{ employee[0] }}" autocomplete="on" method="POST">
+    <form action="/EditEmployee/{{ employee[0] }}" autocomplete="on" method="POST" enctype="multipart/form-data">
 
         <label for="emp_id">Employee id: </label>
         <input type="text" id="emp_id" name="emp_id" value="{{ employee[0] }}" disabled>
@@ -109,6 +109,12 @@
 
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" value="{{ employee[4] }}" required>
+
+        <br>
+        <br>
+        
+        <label for="emp_image_file">Employee Image:</label>
+        <input type="file" id="emp_image_file" name="emp_image_file" style="padding-left: 20%;">
 
         <br>
         <br>
