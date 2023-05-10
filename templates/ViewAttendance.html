@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View All Attendance</title>
-   <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -87,16 +87,19 @@
                 <td>{{ attendance[3] }}</td>
                 <td>
                     <a href="/EditEmpAtt/{{ attendance[0] }}"><button>Edit</button></a>
-                    <a href="/DeleteEmpAtt/{{ attendance[0] }}"><button style="background-color: red;" onclick="return confirm('Are you sure want to delete this record?')">Delete</button></a>
+                    <a href="/DeleteEmpAtt/{{ attendance[0] }}"><button style="background-color: red;"
+                            onclick="return confirm('Are you sure want to delete this record?')">Delete</button></a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <br>
+
     <a href="/AddEmpAtt"><button>Add Attendance</button></a>
     <br>
-    <a href="/">Back to Index</a>
+    <a href="/" class="back-link">Back to Index</a>
+
 </body>
 
 </html>
