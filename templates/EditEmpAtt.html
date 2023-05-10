@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Attendance</title>
+</head>
+<body>
+    <h1>Edit Attendance</h1>
+
+    <form action="/EditEmpAtt/{{ attendance[0] }}" autocomplete="on" method="POST">
+
+        <label for="attendance_id">Attendance id: </label>
+        <input type="text" id="attendance_id" name="attendance_id" value="{{ attendance[0] }}" disabled>
+
+        <br>
+        <br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ attendance[2] }}" required>
+        
+        <br>
+        <br>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        
+        <br>
+        <br>
+
+        <button type="submit">Submit</button>
+        <a href="/ViewAttendance">Back</a>
+    </form>
+
+    
+</body>
+</html>
