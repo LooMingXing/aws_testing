@@ -81,8 +81,8 @@
                 <td>{{ attendance[2] }}</td>
                 <td>{{ attendance[3] }}</td>
                 <td>
-                    <a href="/EditAttendance/{{ attendance[0] }}"><button>Edit</button></a>
-                    <a href="/DeleteAttendance/{{ attendance[0] }}"><button style="background-color: red;">Delete</button></a>
+                    <a href="/EditEmpAtt/{{ attendance[0] }}"><button>Edit</button></a>
+                    <a href="/DeleteEmpAtt/{{ attendance[0] }}"><button style="background-color: red;">Delete</button></a>
                 </td>
             </tr>
             {% endfor %}
@@ -90,6 +90,7 @@
     </table>
     <br>
     <a href="/AddEmpAtt"><button>Add Attendance</button></a>
+    <a href="/">Back to Index</a>
 </body>
 
 </html>
