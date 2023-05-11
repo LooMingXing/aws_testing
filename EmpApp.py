@@ -307,7 +307,7 @@ def viewAttendance():
 def AddAttendance():
     if request.method == 'GET':
         cursor = db_conn.cursor()
-        cursor.execute("SELECT emp_id, CONCAT(first_name, ' ', last_name) as full_name FROM employee")
+        cursor.execute("SELECT emp_id FROM employee")
         employees = cursor.fetchall()
         cursor.close()
 
